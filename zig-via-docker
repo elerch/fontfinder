@@ -1,0 +1,4 @@
+#!/bin/sh
+scriptpath="$( cd "$(dirname "$0")" ; pwd -P )"
+# podman run -t --rm -v "$HOME/.cache:/root/.cache" -v "${scriptpath}:/app" -w /app fontfinder-alpine "$@"
+podman run -t --rm -v "$HOME/.cache:/root/.cache" -v "${scriptpath}:/app" -w /app fontfinder "$@"
