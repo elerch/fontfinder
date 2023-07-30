@@ -325,7 +325,7 @@ test "command line parses with long name no equals" {
 test "command line parses with long name equals" {
     var log_level = std.testing.log_level;
     defer std.testing.log_level = log_level;
-    std.testing.log_level = .debug;
+    // std.testing.log_level = .debug;
     var it = try std.process.ArgIteratorGeneral(.{}).init(std.testing.allocator, "--groups=Latin-1");
     defer it.deinit();
     const options = try parseCommandLine(&it);
@@ -367,11 +367,27 @@ test "Get ranges" {
     var log_level = std.testing.log_level;
     std.testing.log_level = .debug;
     defer std.testing.log_level = log_level;
-    try outputRange(std.testing.allocator, matched_range.starting_codepoint, matched_range.ending_codepoint, arr, false, al.writer());
+    try outputRange(
+        std.testing.allocator,
+        matched_range.starting_codepoint,
+        matched_range.ending_codepoint,
+        arr,
+        false,
+        false,
+        al.writer(),
+    );
     try std.testing.expectEqualStrings(al.items, "U+20-7e=DejaVu Sans Mono\n");
 
     std.log.debug("\nwhole unicode space:", .{});
-    try outputRange(std.testing.allocator, 0, max_unicode, arr, false, al.writer());
+    try outputRange(
+        std.testing.allocator,
+        0,
+        max_unicode,
+        arr,
+        false,
+        false,
+        al.writer(),
+    );
     const expected =
         \\U+20-7e=DejaVu Sans Mono
         \\U+20-7e=DejaVu Sans Mono
