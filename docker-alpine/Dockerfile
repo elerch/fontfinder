@@ -9,7 +9,7 @@ RUN true \
          ca-certificates \
          curl \
          xz \
-    && curl https://mirror.bazel.build/ziglang.org/builds/zig-linux-x86_64-0.11.0-dev.3886+0c1bfe271.tar.xz | tar -C /usr/local/ -xJ \
+    && curl https://ziglang.org/download/0.11.0/zig-linux-x86_64-0.11.0.tar.xz | tar -C /usr/local/ -xJ \
     && apk del curl xz  \
     && ln -s /usr/local/zig*/zig /usr/local/bin \
     && true
